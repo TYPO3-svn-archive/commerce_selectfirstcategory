@@ -194,8 +194,11 @@ class tx_commerceselectfirstcategory_pi1 extends tslib_pibase {
 		// if showUid exists in url, this extension should not be perform
 		$gpVars = t3lib_div::GPvar('tx_commerce_pi1');		
 		
-		if (array_key_exists('showUid', $gpVars))
-			return false;
+		if ($gpVars && is_array($gpVars))
+		{
+			if (array_key_exists('showUid', $gpVars))
+				return false;
+		}
 		
 		// check if current id exists in array
 		return in_array($currentUid, $enabledIds);
